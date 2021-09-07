@@ -2,17 +2,21 @@ import { useState } from "react";
 import { Container, Ul, UlData, Li, EditImg, TrashImg } from "./styled";
 import {
   GET_TASKS_QUERY,
-  DELETE_TASK_QUERY,
+  DELETE_TASK_MUTATION,
+  CHECKBOX_RESOLVER_QUERY,
+  CHECKBOX_RESOLVER_MUTATION,
 } from "../../../functionalComponents/shared/graphql/index";
 import { useMutation, useQuery } from "@apollo/client";
 import EditTasks from "../../addOrEditTasks/EditTasks";
 
 const InfoContainer = () => {
   const { loading, error, data } = useQuery(GET_TASKS_QUERY);
-  const [taskDelete] = useMutation(DELETE_TASK_QUERY);
+  const [checkboxResolverMutation] = useMutation(CHECKBOX_RESOLVER_MUTATION);
+  const [taskDelete] = useMutation(DELETE_TASK_MUTATION);
   const [openPopUp, setOpenPopUp] = useState(false);
   const [task, setTask] = useState([]);
 
+  //delete task selected
   const deleteTask = (e) => {
     taskDelete({
       variables: {
@@ -20,6 +24,16 @@ const InfoContainer = () => {
       },
     }).then(() => {
       document.location.reload();
+    });
+  };
+
+  const checkboxResolverUpdate = (e) => {
+    checkboxResolverMutation({
+      variables: {
+        completed: Boolean(e),
+      },
+    }).then(() => {
+      console.log(data);
     });
   };
 
@@ -50,6 +64,9 @@ const InfoContainer = () => {
               type="checkbox"
               name="completed"
               id="completed"
+              value={Boolean(false)}
+              defaultChecked={task.completed}
+              onChange={(e) => checkboxResolverUpdate(e.target.value)}
             />
             <EditImg onClick={() => sendDataToPopUp(task)} />
             <TrashImg onClick={() => deleteTask(task.id)} />

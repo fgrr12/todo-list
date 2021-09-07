@@ -11,20 +11,29 @@ import {
   AddTaskButton,
 } from "./styled";
 import { useForm } from "react-hook-form";
-import { ADD_TASK_QUERY } from "../../functionalComponents/shared/graphql/index";
+import { EDIT_TASK_MUTATION } from "../../functionalComponents/shared/graphql/index";
 import { useMutation } from "@apollo/client";
 
-const AddTasks = (props) => {
-  const { register, handleSubmit } = useForm();
-  const [taskCreate] = useMutation(ADD_TASK_QUERY);
+const EditTasks = (props) => {
+  const { register, handleSubmit, setValue } = useForm();
+  const [taskUpdate] = useMutation(EDIT_TASK_MUTATION);
+
+  setValue("id", props.taskData.id, { shouldValidate: true });
+  setValue("name", props.taskData.name, { shouldValidate: true });
+  setValue("initialDate", props.taskData.initialDate, { shouldValidate: true });
+  setValue("description", props.taskData.description, { shouldValidate: true });
+  setValue("deadline", props.taskData.deadline, { shouldValidate: true });
 
   const sendTaskData = (data) => {
-    taskCreate({
+    console.log(data);
+    taskUpdate({
       variables: {
+        id: data.id,
         name: data.name,
         description: data.description,
         initialDate: data.initialDate,
         deadline: data.deadline,
+        completed: data.completed,
       },
     }).then(() => {
       document.location.reload();
@@ -34,7 +43,7 @@ const AddTasks = (props) => {
   return (
     <BackgroundContainer>
       <Container onSubmit={handleSubmit((data) => sendTaskData(data))}>
-        <h3>Add new task</h3>
+        <h3>Edit task</h3>
         <DataContainer>
           <Column>
             <div>
@@ -78,11 +87,11 @@ const AddTasks = (props) => {
         </DataContainer>
         <ButtonContainer>
           <ReturnButton onClick={() => props.setOpenPopUp(false)}>Return</ReturnButton>
-          <AddTaskButton type="submit">Save task</AddTaskButton>
+          <AddTaskButton type="submit">Edit task</AddTaskButton>
         </ButtonContainer>
       </Container>
     </BackgroundContainer>
   );
 };
 
-export default AddTasks;
+export default EditTasks;

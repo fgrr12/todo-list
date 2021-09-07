@@ -1,0 +1,6 @@
+functions:
+  checkboxResolver:
+    type: resolver
+    handler:
+      code: src/resolvers/checkboxResolver/handler.js
+    schema: src/resolvers/checkboxResolver/schema.graphql

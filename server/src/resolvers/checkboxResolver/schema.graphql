@@ -1,0 +1,7 @@
+type CheckboxResolverResult {
+  success: Boolean
+}
+
+extend type Mutation {
+  checkboxResolver(id: ID, completed: Boolean): CheckboxResolverResult
+}

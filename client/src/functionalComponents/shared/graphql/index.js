@@ -12,7 +12,7 @@ export const CURRENT_USER_QUERY = gql`
   }
 `;
 
-//Get tasks
+// Get tasks
 export const GET_TASKS_QUERY = gql`
   query tasks {
     tasksList(sort: { deadline: DESC }) {
@@ -28,7 +28,8 @@ export const GET_TASKS_QUERY = gql`
   }
 `;
 
-export const ADD_TASK_QUERY = gql`
+// Add new tasks
+export const ADD_TASK_MUTATION = gql`
   mutation TaskCreate(
     $name: String
     $description: String
@@ -53,7 +54,8 @@ export const ADD_TASK_QUERY = gql`
   }
 `;
 
-export const EDIT_TASK_QUERY = gql`
+// Edit tasks
+export const EDIT_TASK_MUTATION = gql`
   mutation TaskUpdate(
     $id: ID
     $name: String
@@ -81,7 +83,8 @@ export const EDIT_TASK_QUERY = gql`
   }
 `;
 
-export const DELETE_TASK_QUERY = gql`
+// delete tasks
+export const DELETE_TASK_MUTATION = gql`
   mutation TaskDelete($id: ID) {
     taskDelete(filter: { id: $id }) {
       success
@@ -89,8 +92,16 @@ export const DELETE_TASK_QUERY = gql`
   }
 `;
 
-// Sign up a new user mutation.
+// checkbox resolver, cloud function - update data
+export const CHECKBOX_RESOLVER_MUTATION = gql`
+  mutation CheckboxResolver($id: ID, $completed: Boolean) {
+    checkboxResolver(id: $id, completed: $completed) {
+      success
+    }
+  }
+`;
 
+// Sign up a new user mutation.
 export const USER_SIGN_UP_MUTATION = gql`
   mutation UserSignUp($user: UserCreateInput!, $authProfileId: ID) {
     userSignUpWithToken(user: $user, authProfileId: $authProfileId) {
