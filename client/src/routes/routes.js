@@ -11,7 +11,7 @@ const routes = () => {
       <Route exact path="/" component={Login} />
       <ProtectedRoute exact path="/home" component={Home} />
       <Route exact path="/auth/" component={AuthContainer} />
-      <Route path="/auth/callback" component={CallbackContainer} />
+      <Route exact path="/auth/callback" component={CallbackContainer} />
     </Switch>
   );
 };

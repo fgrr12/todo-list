@@ -10,7 +10,6 @@ const Login = () => {
           <span>+</span>
           <Img8Base src="imgs/8base.png" alt="8base" />
         </ImgBox>
-
         <DataSide>
           <AuthButton />
         </DataSide>

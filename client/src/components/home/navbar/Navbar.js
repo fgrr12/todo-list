@@ -4,7 +4,7 @@ import { CURRENT_USER_QUERY } from "../../../functionalComponents/shared/graphql
 import { useQuery } from "@apollo/client";
 
 const Navbar = () => {
-  const { loading, error, data } = useQuery(CURRENT_USER_QUERY);
+  const { data } = useQuery(CURRENT_USER_QUERY);
   return (
     <Header>
       <ImgContainer>

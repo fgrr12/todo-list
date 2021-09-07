@@ -1,6 +1,5 @@
 import { gql } from "@apollo/client";
 
-// Get current user
 export const CURRENT_USER_QUERY = gql`
   query CurrentUser {
     user {
@@ -12,7 +11,6 @@ export const CURRENT_USER_QUERY = gql`
   }
 `;
 
-// Get tasks
 export const GET_TASKS_QUERY = gql`
   query tasks {
     tasksList(sort: { deadline: DESC }) {
@@ -28,7 +26,6 @@ export const GET_TASKS_QUERY = gql`
   }
 `;
 
-// Add new tasks
 export const ADD_TASK_MUTATION = gql`
   mutation TaskCreate(
     $name: String
@@ -54,7 +51,6 @@ export const ADD_TASK_MUTATION = gql`
   }
 `;
 
-// Edit tasks
 export const EDIT_TASK_MUTATION = gql`
   mutation TaskUpdate(
     $id: ID
@@ -83,7 +79,6 @@ export const EDIT_TASK_MUTATION = gql`
   }
 `;
 
-// delete tasks
 export const DELETE_TASK_MUTATION = gql`
   mutation TaskDelete($id: ID) {
     taskDelete(filter: { id: $id }) {

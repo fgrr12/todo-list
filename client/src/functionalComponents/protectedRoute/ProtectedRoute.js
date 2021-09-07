@@ -53,7 +53,7 @@ export const ProtectedRoute = (props) => {
          * that route as the redirect's pathname.
          */
         return (
-          <Redirect to={{ pathname: "/auth", state: { from: restProps.location } }} />
+          <Redirect to={{ pathname: "/", state: { from: restProps.location } }} />
         );
       }}
     />

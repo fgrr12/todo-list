@@ -2,11 +2,9 @@ import { useCallback } from "react";
 import { useApolloClient, useQuery } from "@apollo/client";
 import { useAuth } from "8base-react-sdk";
 import { ButtonSignOut, ButtonSignIn } from "./styled";
-
 import { CURRENT_USER_QUERY } from "../../functionalComponents/shared/graphql";
 
 export const AuthButton = () => {
-
   const { authClient, isAuthorized } = useAuth();
   const apolloClient = useApolloClient();
   const { loading } = useQuery(CURRENT_USER_QUERY);

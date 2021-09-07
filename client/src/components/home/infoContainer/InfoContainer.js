@@ -3,14 +3,13 @@ import { Container, Ul, UlData, Li, EditImg, TrashImg } from "./styled";
 import {
   GET_TASKS_QUERY,
   DELETE_TASK_MUTATION,
-  CHECKBOX_RESOLVER_QUERY,
   CHECKBOX_RESOLVER_MUTATION,
 } from "../../../functionalComponents/shared/graphql/index";
 import { useMutation, useQuery } from "@apollo/client";
 import EditTasks from "../../addOrEditTasks/EditTasks";
 
 const InfoContainer = () => {
-  const { loading, error, data } = useQuery(GET_TASKS_QUERY);
+  const { data } = useQuery(GET_TASKS_QUERY);
   const [checkboxResolverMutation] = useMutation(CHECKBOX_RESOLVER_MUTATION);
   const [taskDelete] = useMutation(DELETE_TASK_MUTATION);
   const [openPopUp, setOpenPopUp] = useState(false);
@@ -27,16 +26,18 @@ const InfoContainer = () => {
     });
   };
 
+  //to change completed between selected or not
   const checkboxResolverUpdate = (e) => {
     checkboxResolverMutation({
       variables: {
         completed: Boolean(e),
       },
     }).then(() => {
-      console.log(data);
+      document.location.reload();
     });
   };
 
+  // to open popup and send data
   const sendDataToPopUp = (task) => {
     setOpenPopUp(true);
     setTask(task);

@@ -8,7 +8,7 @@ import "./App.css";
 
 const App = (props) => {
   const onRequestSuccess = useCallback(({ operation }) => {
-    const message = operation.getContext();
+    operation.getContext();
   }, []);
 
   const onRequestError = useCallback(({ graphQLErrors }) => {
@@ -16,8 +16,7 @@ const App = (props) => {
 
     if (hasGraphQLErrors) {
       graphQLErrors.forEach((error) => {
-        // eslint-disable-next-line no-console
-        console.error(error.message);
+        console.log(error.message);
       });
     }
   }, []);

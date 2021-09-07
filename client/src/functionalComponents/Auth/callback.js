@@ -38,13 +38,13 @@ const authorizeUser = async ({ authClient, apolloClient, history }) => {
       if (errors) {
         if (Array.isArray(errors)) {
           if (errors.some((err) => err?.code === ERROR_CODES.UserNotFoundErrorCode)) {
-            /* If user does does not exist at 8base - create user */
+            /* If user does not exist at 8base - create user */
             return singUpUser();
           }
         }
 
         if (errors?.code === ERROR_CODES.UserNotFoundErrorCode) {
-          /* If user does does not exist at 8base - create user */
+          /* If user does not exist at 8base - create user */
           return singUpUser();
         }
       }
