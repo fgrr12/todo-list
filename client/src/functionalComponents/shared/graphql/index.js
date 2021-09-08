@@ -12,7 +12,7 @@ export const CURRENT_USER_QUERY = gql`
 `;
 
 export const GET_TASKS_QUERY = gql`
-  query tasks {
+  query getTasks {
     tasksList(sort: { deadline: DESC }) {
       items {
         id

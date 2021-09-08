@@ -1,7 +1,7 @@
 {
   "data": {
-    "id": "id value",
-    "completed": "completed value"
+    "id": "",
+    "completed": null
   },
   "headers": {
     "x-header-1": "header value"

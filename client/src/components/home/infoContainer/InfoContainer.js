@@ -27,13 +27,15 @@ const InfoContainer = () => {
   };
 
   //to change completed between selected or not
-  const checkboxResolverUpdate = (e) => {
+  const checkboxResolverUpdate = (task) => {
+    let data = !task.completed;
     checkboxResolverMutation({
       variables: {
-        completed: Boolean(e),
+        id: task.id,
+        completed: data,
       },
     }).then(() => {
-      document.location.reload();
+      //document.location.reload();
     });
   };
 
@@ -67,7 +69,7 @@ const InfoContainer = () => {
               id="completed"
               value={Boolean(false)}
               defaultChecked={task.completed}
-              onChange={(e) => checkboxResolverUpdate(e.target.value)}
+              onChange={(e) => checkboxResolverUpdate(task)}
             />
             <EditImg onClick={() => sendDataToPopUp(task)} />
             <TrashImg onClick={() => deleteTask(task.id)} />
