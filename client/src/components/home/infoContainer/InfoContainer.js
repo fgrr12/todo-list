@@ -28,14 +28,13 @@ const InfoContainer = () => {
 
   //to change completed between selected or not
   const checkboxResolverUpdate = (task) => {
-    let data = !task.completed;
     checkboxResolverMutation({
       variables: {
         id: task.id,
-        completed: data,
+        completed: !task.completed,
       },
     }).then(() => {
-      //document.location.reload();
+      document.location.reload();
     });
   };
 
@@ -58,7 +57,7 @@ const InfoContainer = () => {
           <label>Delete</label>
         </UlData>
         {data?.tasksList?.items?.map((task) => (
-          <Li key={task.id}>
+          <Li key={task.id} id={task.id}>
             <label>{task.name}</label>
             <label>{task.description}</label>
             <label>{task.initialDate}</label>
@@ -71,8 +70,8 @@ const InfoContainer = () => {
               defaultChecked={task.completed}
               onChange={(e) => checkboxResolverUpdate(task)}
             />
-            <EditImg onClick={() => sendDataToPopUp(task)} />
-            <TrashImg onClick={() => deleteTask(task.id)} />
+            <EditImg name="editImg" onClick={() => sendDataToPopUp(task)} />
+            <TrashImg name="deleteImg" onClick={() => deleteTask(task.id)} />
           </Li>
         ))}
       </Ul>

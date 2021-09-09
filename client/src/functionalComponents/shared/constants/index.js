@@ -7,6 +7,7 @@ export const WORKSPACE_ENDPOINT = process.env.REACT_APP_WORKSPACE_ENDPOINT;
 export const AUTH_DOMAIN = process.env.REACT_APP_AUTH_DOMAIN;
 export const AUTH_CLIENT_ID = process.env.REACT_APP_AUTH_CLIENT_ID;
 export const AUTH_PROFILE_ID = process.env.REACT_APP_AUTH_PROFILE_ID;
+export const AUTH_TOKEN = process.env.REACT_APP_AUTH_TOKEN;
 
 /**
  * The redirect and logout URIs are all configured in the

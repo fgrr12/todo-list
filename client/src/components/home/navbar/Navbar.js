@@ -5,6 +5,7 @@ import { useQuery } from "@apollo/client";
 
 const Navbar = () => {
   const { data } = useQuery(CURRENT_USER_QUERY);
+  console.log(data);
   return (
     <Header>
       <ImgContainer>
@@ -12,8 +13,8 @@ const Navbar = () => {
         <span>+</span>
         <Img8Base src="imgs/8base.png" alt="8base" />
       </ImgContainer>
-      <h3>Welcome {data?.user?.firstName}!</h3>
-      <AuthButton />
+      <h3 data-testid="user">Welcome {data?.user?.firstName}!</h3>
+      <AuthButton/>
     </Header>
   );
 };
