@@ -5,7 +5,6 @@ import { useQuery } from "@apollo/client";
 
 const Navbar = () => {
   const { data } = useQuery(CURRENT_USER_QUERY);
-  console.log(data);
   return (
     <Header>
       <ImgContainer>
